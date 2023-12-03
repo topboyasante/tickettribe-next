@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply dark:bg-[#000000] 
+    @apply dark:bg-[#0a0a0a] 
         bg-[#edf6f9]
          ease-in duration-200;
   }

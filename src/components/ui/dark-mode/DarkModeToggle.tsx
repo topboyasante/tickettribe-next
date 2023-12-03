@@ -8,12 +8,12 @@ const DarkModeToggle = () => {
   return (
     <button
       onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-      className="hover:scale-105 ease duration-500 aspect-square p-1 w-fit grid place-items-center cursor-pointer"
+      className="hover:scale-105 ease duration-500 aspect-square p-1 border rounded border-primary-light dark:border-primary-dark grid place-items-center cursor-pointer"
     >
       {theme === "light" ? (
-        <RiMoonLine className="text-primary-light dark:text-primary-dark" />
+        <RiMoonLine className="text-sm text-primary-light dark:text-primary-dark" />
       ) : (
-        <RiSunLine className=" text-primary-light dark:text-primary-dark" />
+        <RiSunLine className=" text-sm text-primary-light dark:text-primary-dark" />
       )}
     </button>
   );
