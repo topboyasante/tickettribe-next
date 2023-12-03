@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.12.2",
+    "axios": "^1.6.2",
     "next": "14.0.3",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0"
+    "react-icons": "^4.12.0",
+    "react-loader-spinner": "^5.4.5"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,9 +1,18 @@
 "use client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const client = new QueryClient();
 import * as React from "react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { type ThemeProviderProps } from "next-themes/dist/types";
+import { ThemeProvider } from "next-themes";
 
-export function Provider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+type Props = {
+  children?: React.ReactNode;
+};
+
+export function Provider({ children }: Props) {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <QueryClientProvider client={client}>{children}</QueryClientProvider>
+    </ThemeProvider>
+  );
 }
