@@ -1,3 +1,7 @@
+interface LoginInput {
+  email: string;
+  password: string;
+}
 interface IEvent {
     _id: string;
     title: string;

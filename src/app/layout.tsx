@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/providers/Provider";
+import { Toaster } from "react-hot-toast";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -18,9 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={manrope.className}>
-        <Provider>
-          {children}
-        </Provider>
+        <div>
+          <Toaster />
+        </div>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
