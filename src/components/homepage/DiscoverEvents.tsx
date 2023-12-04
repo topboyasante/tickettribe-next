@@ -34,6 +34,7 @@ function DiscoverEvents() {
               })
             )}
           </section>
+          
         </section>
       </section>
     </section>

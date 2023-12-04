@@ -20,5 +20,23 @@ function useFetchDiscoveredEvents(key: string) {
     IsFetchingDiscoveredEvents,
   };
 }
+function useFetchEvents(key: string) {
+  const { isLoading: IsFetchingEvents, data: Events } = useQuery({
+    queryKey: [key],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://ticket-tribe.onrender.com/api/v1/events/`
+      );
+      return res.data;
+    },
+    select: (data) => {
+      return data.events;
+    },
+  });
+  return {
+    IsFetchingEvents,
+    Events,
+  };
+}
 
-export { useFetchDiscoveredEvents };
+export { useFetchEvents,useFetchDiscoveredEvents };
