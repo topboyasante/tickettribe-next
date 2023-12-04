@@ -51,7 +51,7 @@ function SignUpForm() {
             <input
               type="text"
               placeholder="Enter your fullname"
-              className="border border-[#9EA1AB] bg-transparent outline-none appearance-none w-full rounded px-4 py-2 lg:px-2 lg:py-1"
+              className="border-2 mt-2 dark:border-[#404040] bg-transparent outline-none appearance-none w-full rounded px-4 py-2 lg:px-2 lg:py-1"
               {...register("full_name")}
             />
           </section>
@@ -63,7 +63,7 @@ function SignUpForm() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="border border-[#9EA1AB] bg-transparent outline-none appearance-none w-full rounded px-4 py-2 lg:px-2 lg:py-1"
+              className="border-2 mt-2 dark:border-[#404040] bg-transparent outline-none appearance-none w-full rounded px-4 py-2 lg:px-2 lg:py-1"
               {...register("email")}
             />
           </section>
@@ -72,7 +72,7 @@ function SignUpForm() {
             <label htmlFor="password" className="font-bold">
               Password
             </label>
-            <section className="flex items-center rounded px-4 py-2 lg:px-2 lg:py-1 w-full border border-[#9EA1AB] bg-transparent ">
+            <section className="flex items-center rounded px-4 py-2 lg:px-2 lg:py-1 w-full border-2 mt-2 dark:border-[#404040] bg-transparent ">
               <input
                 type={showPassword1 ? "text" : "password"}
                 placeholder="Enter your password"
@@ -97,7 +97,7 @@ function SignUpForm() {
             <label htmlFor="password" className="font-bold">
               Confirm Password
             </label>
-            <section className="flex items-center rounded px-4 py-2 lg:px-2 lg:py-1 w-full border border-[#9EA1AB] bg-transparent ">
+            <section className="flex items-center rounded px-4 py-2 lg:px-2 lg:py-1 w-full border-2 mt-2 dark:border-[#404040] bg-transparent ">
               <input
                 type={showPassword2 ? "text" : "password"}
                 placeholder="Enter your password"

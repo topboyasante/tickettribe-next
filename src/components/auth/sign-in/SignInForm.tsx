@@ -86,7 +86,7 @@ function SignInForm() {
           <section className="mb-3">
             <Link
               href={`/auth/forgot-password`}
-              className="font-bold text-primary"
+              className="font-bold text-primary-light dark:text-primary-dark"
             >
               Forgot Password?
             </Link>
