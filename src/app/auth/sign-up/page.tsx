@@ -1,5 +1,4 @@
-
-import SignInForm from '@/components/auth/sign-in/SignInForm'
+import SignUpForm from '@/components/auth/sign-up/SignUpForm'
 import React from 'react'
 
 function page() {
@@ -13,7 +12,7 @@ function page() {
       ></section>
       {/* Right Side */}
       <section className="w-full lg:w-[50%] p-5">
-       <SignInForm/>
+       <SignUpForm/>
       </section>
     </section>
   </section>
