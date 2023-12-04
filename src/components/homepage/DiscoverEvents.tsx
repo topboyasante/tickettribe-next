@@ -1,12 +1,12 @@
 "use client";
-import { useFetchDiscoveredEvents } from "@/hooks/useFetch";
+import { useFetch } from "@/hooks/useFetch";
 import EventCard from "../ui/events/EventCard";
 import Loader from "../ui/loaders/Loader";
 
 function DiscoverEvents() {
   // Hook to get Discovered Events
   const { DiscoveredEvents, IsFetchingDiscoveredEvents } =
-    useFetchDiscoveredEvents("get_all_events");
+    useFetch("get_all_events");
 
   return (
     <section className="w-full py-16">

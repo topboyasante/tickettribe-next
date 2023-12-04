@@ -1,13 +1,13 @@
 "use client";
 import EventCard from "@/components/ui/events/EventCard";
 import Loader from "@/components/ui/loaders/Loader";
-import { useFetchEvents } from "@/hooks/useFetch";
+import { useFetch } from "@/hooks/useFetch";
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 function page() {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const { Events, IsFetchingEvents } = useFetchEvents("events");
+  const { Events, IsFetchingEvents } = useFetch("events");
   const filteredItems = Events?.filter((item: IEvent) => {
     const EventMatch = item?.title
       ?.toLowerCase()

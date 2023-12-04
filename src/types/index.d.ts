@@ -23,3 +23,14 @@ interface IEvent {
     location: string;
     image: string;
   }
+
+  interface ITicket{
+    _id:string
+    eventName: string;
+    eventId: string;
+    name: string;
+    price: number;
+    soldQty: number;
+    ticketQty: number;
+    type: string;
+  }
