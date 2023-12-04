@@ -1,10 +1,7 @@
 "use client";
 import { useSession, signOut } from "next-auth/react";
-import { AiOutlineMenu } from "react-icons/ai";
-import { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
-import { AiOutlineUser } from "react-icons/ai";
 import { BsTicketPerforated, BsCalendarEvent } from "react-icons/bs";
 import Avatar from "react-avatar";
 import Link from "next/link";
@@ -14,8 +11,7 @@ import DropDown from "../ui/dropdown/DropDown";
 import DarkModeToggle from "../ui/dark-mode/DarkModeToggle";
 
 function AuthNavbar() {
-  const [navIsOpen, setNavIsOpen] = useState<boolean>(false);
-  const user = useSession();
+  const session = useSession();
 
   return (
     <header>
@@ -40,12 +36,12 @@ function AuthNavbar() {
                 <section className="flex items-center">
                   <section className="flex items-center gap-2">
                     <Avatar
-                      name={user.data?.user?.name as string}
+                      name={session.data?.user?.name as string}
                       round
                       size="30"
                       maxInitials={2}
                     />
-                    <p className="hidden xl:block">{user.data?.user?.name}</p>
+                    <p className="hidden xl:block">{session.data?.user?.name}</p>
                   </section>
                   <BiChevronDown className="text-xl" />
                 </section>
@@ -71,7 +67,7 @@ function AuthNavbar() {
                 <section className="flex items-center">
                   <section className="flex items-center gap-2">
                     <Avatar
-                      name={user.data?.user?.name as string}
+                      name={session.data?.user?.name as string}
                       round
                       size="35"
                       maxInitials={2}
@@ -82,7 +78,7 @@ function AuthNavbar() {
               }
               MenuItemsContent={
                 <section>
-                  <p>{user.data?.user?.name}</p>
+                  <p>{session.data?.user?.name}</p>
                   <br />
                   <button
                     onClick={() => signOut()}

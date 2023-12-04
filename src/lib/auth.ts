@@ -1,7 +1,11 @@
 import axios from "axios";
 import { NextAuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import toast from "react-hot-toast";
+
+
+interface userSession extends Session{
+  token:string
+}
 
 export const authOptions: NextAuthOptions = {
   //Providers: A way of "Accepting" authentication
@@ -22,28 +26,22 @@ export const authOptions: NextAuthOptions = {
 
         // Make a POST Request to the backend to log in:
         const { email, password } = credentials;
-        // try {
-        //   const res = await axios.post(
-        //     "https://ticket-tribe.onrender.com/api/v1/auth/login",
-        //     { email, password }
-        //   );
-        //   const user = res.data;
-        //   if (user) {
-        //     return user;
-        //   } else {
-        //     return null;
-        //   }
-        // } catch (error){
-        //   throw new Error("Invalid Credentials");
-        // }
         const user = await axios
         .post("https://ticket-tribe.onrender.com/api/v1/auth/login", { email, password })
-        .then((res) => res.data.user)
+        .then((res) => {
+          const user = {
+            name:res.data.user.name,
+            userId:res.data.user.userId,
+            role:res.data.user.role,
+            token:res.data.token
+          }
+          return user
+        })
         .catch(() => {
           throw new Error("Invalid Credentials");
         });
 
-        return {...user}
+        return user
       },
     }),
   ],
@@ -61,10 +59,12 @@ export const authOptions: NextAuthOptions = {
       //the "user" parameter is res.data
       //set the "token.user" parameter to "user"
       if (user) {
+        // Adds a "user" property to the token object
         token.user = user;
       }
       return token; //available as a parameter in the session() callback
     },
+
     async session({ token, session }) {
       //Session Callbacks store the users info in the session object
       //Add Token to the session object
