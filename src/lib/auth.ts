@@ -38,8 +38,8 @@ export const authOptions: NextAuthOptions = {
         // }
         const user = await axios
         .post("https://ticket-tribe.onrender.com/api/v1/auth/login", { email, password })
-        .then((res) => res.data)
-        .catch((err) => {
+        .then((res) => res.data.user)
+        .catch(() => {
           throw new Error("Invalid Credentials");
         });
 
