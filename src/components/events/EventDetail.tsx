@@ -6,7 +6,7 @@ import Loader from "../ui/loaders/Loader";
 import { AiFillCalendar } from "react-icons/ai";
 import { BiMapPin } from "react-icons/bi";
 import { CiClock2 } from "react-icons/ci";
-import { formatDate, formatTime } from "@/utils";
+// import { formatDate, formatTime } from "@/utils";
 import { useFetchById } from "@/hooks/useFetchById";
 import Link from "next/link";
 import Button from "../ui/buttons/Button";
@@ -100,11 +100,11 @@ function EventDetail({
                   <h3 className="font-bold text-2xl">Date and Time</h3>
                   <section className="flex gap-2 items-center">
                     <AiFillCalendar />
-                    <p>{formatDate(SingleEvent?.startDate)}</p>
+                    {/* <p>{formatDate(SingleEvent?.startDate)}</p> */}
                   </section>
                   <section className="flex gap-2 items-center">
                     <CiClock2 />
-                    <p>{formatTime(SingleEvent?.startDateTime)}</p>
+                    {/* <p>{formatTime(SingleEvent?.startDateTime)}</p> */}
                   </section>
                 </section>
                 {/* Location */}
