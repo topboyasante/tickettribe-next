@@ -30,7 +30,6 @@ function useAuth<T>(key?: string) {
       toast.success("User successfully created! Kindly Verify your Account.");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.message}`);
     },
   });
@@ -58,7 +57,6 @@ function useAuth<T>(key?: string) {
       // reset();
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });
@@ -83,7 +81,6 @@ function useAuth<T>(key?: string) {
       reset()
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`There was an error. Please Try Again.`);
     },
   });
@@ -111,7 +108,6 @@ function useAuth<T>(key?: string) {
       router.push("/auth/sign-in");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`There was an error. Please Try Again.`);
     },
   });

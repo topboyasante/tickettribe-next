@@ -4,7 +4,7 @@ import Logo from "@/components/ui/logo/Logo";
 import useAuth from "@/hooks/useAuth";
 import { useEffect } from "react";
 
-function page() {
+function Page() {
   const { verifyAccount, isverifyingAccount, HasVerifiedAccount } =
     useAuth("events");
 
@@ -49,4 +49,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

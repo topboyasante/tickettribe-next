@@ -1,7 +1,7 @@
 import ForgotPasswordForm from "@/components/auth/forgot-password/ForgotPasswordForm";
 import React from "react";
 
-function page() {
+function Page() {
   return (
     <section className="w-full h-screen">
       <section className="w-full h-full flex items-center">
@@ -19,4 +19,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

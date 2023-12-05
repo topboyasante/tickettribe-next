@@ -3,7 +3,7 @@ import Button from "@/components/ui/buttons/Button";
 import PricingCard from "@/components/ui/pricing/PricingCard";
 import Link from "next/link";
 
-function page() {
+function Page() {
     const pricingData = [
         {
           title: "Free Events",
@@ -84,4 +84,4 @@ function page() {
       );
 }
 
-export default page
+export default Page

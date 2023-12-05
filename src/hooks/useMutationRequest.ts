@@ -25,7 +25,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       return res.data;
     },
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -33,7 +32,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       router.push("/events");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });
@@ -53,14 +51,12 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       return res.data;
     },
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
       toast.success("Event Updated!");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });
@@ -79,7 +75,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       return res.data;
     },
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -87,7 +82,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       router.push("/events/my-events")
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });
@@ -107,7 +101,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       return res.data;
     },
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -115,7 +108,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       // navigate("/events");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });
@@ -135,7 +127,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       return res.data;
     },
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -143,7 +134,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       router.push("/tickets");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });
@@ -163,7 +153,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       return res.data;
     },
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -171,7 +160,6 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       router.push("/tickets");
     },
     onError: (error: AxiosError<any, any>) => {
-      console.log(error);
       toast.error(`${error?.response?.data.msg}`);
     },
   });

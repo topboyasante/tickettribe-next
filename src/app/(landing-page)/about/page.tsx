@@ -2,7 +2,7 @@ import { FaGlobe } from "react-icons/fa";
 import { LuPartyPopper } from "react-icons/lu";
 import { IoTicketOutline } from "react-icons/io5";
 
-function page() {
+function Page() {
   return (
     <main className="w-screen h-full">
       <section
@@ -47,4 +47,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

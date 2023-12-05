@@ -1,6 +1,6 @@
 import React from "react";
 
-function page() {
+function Page() {
   return (
     <main className="w-screen h-full pt-[7vh]">
       <main className="w-screen h-full p-5">
@@ -15,4 +15,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

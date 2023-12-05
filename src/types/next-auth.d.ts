@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import NextAuth from "next-auth";
 
 //code is enhancing the types provided by the NextAuth library to include additional properties

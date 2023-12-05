@@ -51,7 +51,7 @@ function ForgotPasswordForm() {
     {/* Sign Up Link */}
     <section>
       <p>
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <span className="text-primary-light dark:text-primary-dark font-bold">
           <Link href={`/auth/sign-up`}>Sign Up</Link>
         </span>

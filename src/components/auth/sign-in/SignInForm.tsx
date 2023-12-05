@@ -25,7 +25,6 @@ function SignInForm() {
       redirect: false,
     });
     if (res?.error) {
-      console.log(res.error);
       toast.error(`${res.error}`);
       setIsReqSent(false);
     } else {
@@ -100,7 +99,7 @@ function SignInForm() {
       {/* Sign Up Link */}
       <section>
         <p>
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <span className="text-primary-light dark:text-primary-dark font-bold">
             <Link href={`/auth/sign-up`}>Sign Up</Link>
           </span>
