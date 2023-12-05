@@ -16,8 +16,6 @@ function Page() {
       }
     );
 
-    console.log(PurchasedTickets)
-
   const filteredItems = PurchasedTickets?.filter((item: ITicket) => {
     const EventMatch = item?.eventName
       ?.toLowerCase()
