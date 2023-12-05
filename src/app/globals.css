@@ -9,3 +9,8 @@
          ease-in duration-200;
   }
 }
+
+
+::-webkit-scrollbar{
+  display: none;
+}
