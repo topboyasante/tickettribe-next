@@ -6,7 +6,7 @@ function Hero() {
   return (
     <main className="w-full h-full pt-[7vh]">
       <section
-        className={`relative w-full h-[50vh]
+        className={`relative w-full h-[70vh] lg:h-[50vh]
         bg-bottom 
         bg-[url('https://images.unsplash.com/photo-1531058020387-3be344556be6?auhref=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070')]`}
       >

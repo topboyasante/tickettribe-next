@@ -3,7 +3,7 @@ import Hero from "@/components/homepage/Hero";
 import Steps from "@/components/homepage/Steps";
 import React from "react";
 
-function page() {
+function Page() {
   return (
     <main>
       <Hero />
@@ -13,4 +13,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

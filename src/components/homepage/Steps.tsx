@@ -14,8 +14,8 @@ function Steps() {
             securely.
           </p>
         </section>
-        <section className="grid grid-cols-1 md:grid-cols-2  gap-5 my-5">
-          <section className="col-span-1 border dark:border-[#404040] p-5 rounded">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
+          <section className="col-span-1 border-[4px] dark:border-[#404040] px-5 py-8 rounded-3xl">
             <section>
               <section className="bg-primary-light dark:bg-primary-dark text-white dark:text-black p-3 rounded-full w-fit mb-2">
                 <IoMdCreate />
@@ -29,7 +29,7 @@ function Steps() {
               </p>
             </section>
           </section>
-          <section className="col-span-1 border dark:border-[#404040] p-5 rounded">
+          <section className="col-span-1 border-[4px] dark:border-[#404040] px-5 py-8 rounded-3xl">
             <section>
               <section className="bg-primary-light dark:bg-primary-dark text-white dark:text-black p-3 rounded-full w-fit mb-2">
                 <IoTicketOutline />
@@ -43,7 +43,7 @@ function Steps() {
               </p>
             </section>
           </section>
-          <section className="col-span-1 border dark:border-[#404040] p-5 rounded">
+          <section className="col-span-1 border-[4px] dark:border-[#404040] px-5 py-8 rounded-3xl">
             <section>
               <section className="bg-primary-light dark:bg-primary-dark text-white dark:text-black p-3 rounded-full w-fit mb-2">
                 <CiShare2 />
@@ -58,7 +58,7 @@ function Steps() {
               </p>
             </section>
           </section>
-          <section className="col-span-1 border dark:border-[#404040] p-5 rounded">
+          <section className="col-span-1 border-[4px] dark:border-[#404040] px-5 py-8 rounded-3xl">
             <section>
               <section className="bg-primary-light dark:bg-primary-dark text-white dark:text-black p-3 rounded-full w-fit mb-2">
                 <CiMoneyBill />

@@ -1,24 +1,61 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
-function useFetchDiscoveredEvents(key: string) {
-  const { isLoading: IsFetchingDiscoveredEvents, data: DiscoveredEvents } =
-    useQuery({
-      queryKey: [key],
-      queryFn: async () => {
-        const res = await axios.get(
-          `https://ticket-tribe.onrender.com/api/v1/events/`
-        );
-        return res.data;
-      },
-      select: (data) => {
-        return data.events.slice(0, 4);
-      },
-    });
+//For Requests that do not need the accessToken
+export function useFetch(
+  key: string,
+  url: string,
+  customSelect?: (data: any) => any // A function to tansform the data into how we need it
+) {
+  const { isLoading, data } = useQuery({
+    queryKey: [key],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://ticket-tribe.onrender.com/api/v1/${url}`
+      );
+      return res.data;
+    },
+    select:
+      customSelect ||
+      ((data) => {
+        return data.events;
+      }),
+  });
+
   return {
-    DiscoveredEvents,
-    IsFetchingDiscoveredEvents,
+    isLoading,
+    data,
   };
 }
 
-export { useFetchDiscoveredEvents };
+export function useAuthFetch(
+  key: string,
+  url: string,
+  customSelect?: (data: any) => any // A function to tansform the data into how we need it
+) {
+  const session = useSession();
+  const accessToken = session.data?.user.token;
+
+  const { isLoading, data } = useQuery({
+    queryKey: [key],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://ticket-tribe.onrender.com/api/v1/${url}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      return res.data;
+    },
+    enabled: session.status === "authenticated",
+    select:
+      customSelect ||
+      ((data) => {
+        return data.events;
+      }),
+  });
+
+  return {
+    isLoading,
+    data,
+  };
+}
