@@ -35,13 +35,13 @@ function ResetEmailForm() {
   }
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
+    const searchParams = new URLSearchParams();
     const tokenValue = searchParams.get("token");
     const emailValue = searchParams.get("email");
 
     setUserEmail(emailValue);
     setUserToken(tokenValue);
-  }, [location.search]);
+  }, []);
 
   return (
     <section className="w-full lg:w-[70%] mx-auto">
