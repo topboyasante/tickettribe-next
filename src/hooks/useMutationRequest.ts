@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const queryClient = new QueryClient();
@@ -50,7 +50,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       );
       return res.data;
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -79,7 +79,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
         queryKey: [`${key}`],
       });
       toast.success("Event Deleted!");
-      router.push("/events/my-events")
+      router.push("/events/my-events");
     },
     onError: (error: AxiosError<any, any>) => {
       toast.error(`${error?.response?.data.msg}`);
@@ -126,7 +126,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       );
       return res.data;
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
@@ -152,12 +152,38 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       );
       return res.data;
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
       toast.success("Ticket Purchased!");
       router.push("/tickets");
+    },
+    onError: (error: AxiosError<any, any>) => {
+      toast.error(`${error?.response?.data.msg}`);
+    },
+  });
+
+  //Update User Profile:
+  const {
+    mutate: UpdateProfile,
+    data: UpdatedProfile,
+    isPending: isUpdatingProfile,
+  } = useMutation({
+    mutationFn: async (payload: T) => {
+      const res = await axios.patch(
+        `https://ticket-tribe.onrender.com/api/v1/user/updateUser`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`user`],
+      });
+      signOut()
+      toast.success("User Details Updated!");
     },
     onError: (error: AxiosError<any, any>) => {
       toast.error(`${error?.response?.data.msg}`);
@@ -180,7 +206,12 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
     createTicket,
     CreatedTicket,
     isCreatingTicket,
-    PurchaseTicket,PurchasedTicket,isPurchasingTicket
+    PurchaseTicket,
+    PurchasedTicket,
+    isPurchasingTicket,
+    UpdateProfile,
+    UpdatedProfile,
+    isUpdatingProfile,
   };
 }
 
