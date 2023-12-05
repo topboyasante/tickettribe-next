@@ -5,9 +5,9 @@ import { useFetch } from "@/hooks/useFetch";
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-function page() {
+function Page() {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const { Events, IsFetchingEvents } = useFetch("events");
+  const { data:Events, isLoading:IsFetchingEvents } = useFetch("events","events");
   const filteredItems = Events?.filter((item: IEvent) => {
     const EventMatch = item?.title
       ?.toLowerCase()
@@ -22,7 +22,7 @@ function page() {
           Events
         </h1>
         <section className="flex flex-col md:flex-row lg:justify-between lg:items-center gap-3 my-3">
-          <section className="border dark:border-[#303030] rounded-md px-2 py-1 lg:w-[45%] flex items-center">
+          <section className="border dark:border-[#303030] rounded-md px-2 py-1 w-[60%] lg:w-[45%] flex items-center">
             <input
               type="search"
               placeholder="Search for events"
@@ -44,7 +44,7 @@ function page() {
               <Loader width="50" height="50" color="#006d77" />
             </section>
           ) : (
-            <section className="grid my-8 grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
+            <section className="grid my-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full h-full">
               {filteredItems?.length > 0 ? (
                 filteredItems?.map((item: IEvent) => (
                   <EventCard
@@ -70,4 +70,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

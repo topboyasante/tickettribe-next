@@ -5,8 +5,7 @@ import Loader from "../ui/loaders/Loader";
 
 function DiscoverEvents() {
   // Hook to get Discovered Events
-  const { DiscoveredEvents, IsFetchingDiscoveredEvents } =
-    useFetch("get_all_events");
+  const {data:DiscoveredEvents,isLoading:IsFetchingDiscoveredEvents} = useFetch("discovered-events","events")
 
   return (
     <section className="w-full py-16">
@@ -14,7 +13,7 @@ function DiscoverEvents() {
         <h1 className="text-xl lg:text-3xl font-bold mb-2">Discover Events</h1>
         <p>Take a peek at some amazing events using TicketTribe.</p>
         <section className="relative overflow-x-hidden">
-          <section className="grid lg:grid-cols-4 gap-5 my-5 w-full">
+          <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5 w-full">
             {IsFetchingDiscoveredEvents ? (
               <section className="w-full h-full flex justify-center items-center my-5 col-span-4">
                 <Loader width="50" height="50" color={"#777777"} />

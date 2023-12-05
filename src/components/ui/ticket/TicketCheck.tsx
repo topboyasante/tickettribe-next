@@ -4,27 +4,27 @@ type CheckProps = {
 
 const checkMappings: Record<string, { className: string; text: string }> = {
   regular: {
-    className: "bg-primary text-white",
+    className: "bg-primary-light dark:bg-primary-dark text-white dark:text-black",
     text: "Regular",
   },
   "early-bird": {
-    className: "bg-primary text-white",
+    className: "bg-primary-light dark:bg-primary-dark text-white dark:text-black",
     text: "Early Bird",
   },
   "parking-pass": {
-    className: "bg-primary text-white",
+    className: "bg-primary-light dark:bg-primary-dark text-white dark:text-black",
     text: "Parking Pass",
   },
   standard: {
-    className: "text-yellow-700 font-bold",
+    className: "border-2 w-fit border-yellow-700 text-yellow-700 font-bold",
     text: "Standard",
   },
   vip: {
-    className: "text-red-700 font-bold",
+    className: "border-2 w-fit border-red-700 text-red-700 font-bold",
     text: "VIP",
   },
   vvip: {
-    className: "text-teal-700 font-bold",
+    className: "border-2 w-fit border-teal-700 text-teal-700 font-bold",
     text: "VVIP",
   },
 };

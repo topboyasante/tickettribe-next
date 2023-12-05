@@ -10,7 +10,7 @@ import Button from "../ui/buttons/Button";
 import DropDown from "../ui/dropdown/DropDown";
 import DarkModeToggle from "../ui/dark-mode/DarkModeToggle";
 import { useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
 
 const pageLinks = [
   {
@@ -77,7 +77,31 @@ function AuthNavbar() {
                     </section>
                   }
                   MenuItemsContent={
-                    <section>
+                    <section className="flex flex-col gap-3">
+                      <Link href={`/events`}>
+                        <section className="flex items-center gap-3">
+                          <BsCalendarEvent />
+                          <p className="font-semibold text-sm">All Events</p>
+                        </section>
+                      </Link>
+                      <Link href={`/events/my-events`}>
+                        <section className="flex items-center gap-3">
+                          <BsCalendarEvent />
+                          <p className="font-semibold text-sm">My Events</p>
+                        </section>
+                      </Link>
+                      <Link href={`/tickets`}>
+                        <section className="flex items-center gap-3">
+                          <BsTicketPerforated />
+                          <p className="font-semibold text-sm">Tickets</p>
+                        </section>
+                      </Link>
+                      <Link href={`/profile`}>
+                        <section className="flex items-center gap-3">
+                          <AiOutlineUser />
+                          <p className="font-semibold text-sm">Profile</p>
+                        </section>
+                      </Link>
                       <button
                         onClick={() => signOut()}
                         className="flex items-center gap-3"
@@ -107,9 +131,31 @@ function AuthNavbar() {
                     </section>
                   }
                   MenuItemsContent={
-                    <section>
-                      <p>{session.data?.user?.name}</p>
-                      <br />
+                    <section className="flex flex-col gap-3">
+                      <Link href={`/events`}>
+                        <section className="flex items-center gap-3">
+                          <BsCalendarEvent />
+                          <p className="font-semibold text-sm">All Events</p>
+                        </section>
+                      </Link>
+                      <Link href={`/events/my-events`}>
+                        <section className="flex items-center gap-3">
+                          <BsCalendarEvent />
+                          <p className="font-semibold text-sm">My Events</p>
+                        </section>
+                      </Link>
+                      <Link href={`/tickets`}>
+                        <section className="flex items-center gap-3">
+                          <BsTicketPerforated />
+                          <p className="font-semibold text-sm">Tickets</p>
+                        </section>
+                      </Link>
+                      <Link href={`/profile`}>
+                        <section className="flex items-center gap-3">
+                          <AiOutlineUser />
+                          <p className="font-semibold text-sm">Profile</p>
+                        </section>
+                      </Link>
                       <button
                         onClick={() => signOut()}
                         className="flex items-center gap-3"
@@ -126,72 +172,72 @@ function AuthNavbar() {
         </header>
       ) : (
         <header>
-      <nav className="w-full h-[7vh] fixed left-0 top-0 z-50 bg-bg-light dark:bg-bg-dark">
-        <section className="max-w-screen-xl mx-auto flex w-full h-full justify-between items-center p-5 xl:px-0">
-          {/* Left */}
-          <Link href={`/`}>
-            <Logo />
-          </Link>
-          {/* Right */}
-          <section className="hidden lg:flex gap-5 items-center">
-            <DarkModeToggle />
-            <section className="flex items-center gap-5">
+          <nav className="w-full h-[7vh] fixed left-0 top-0 z-50 bg-bg-light dark:bg-bg-dark">
+            <section className="max-w-screen-xl mx-auto flex w-full h-full justify-between items-center p-5 xl:px-0">
+              {/* Left */}
+              <Link href={`/`}>
+                <Logo />
+              </Link>
+              {/* Right */}
+              <section className="hidden lg:flex gap-5 items-center">
+                <DarkModeToggle />
+                <section className="flex items-center gap-5">
+                  {pageLinks.map((item) => {
+                    return (
+                      <Link href={`${item.href}`} key={item.id}>
+                        {item.name}
+                      </Link>
+                    );
+                  })}
+                </section>
+                <Link href={`/auth/sign-up`}>
+                  <Button size="x-wide" type="primary">
+                    Sign Up
+                  </Button>
+                </Link>
+              </section>
+              {/* Right - Mobile */}
+              <section className="lg:hidden flex items-center gap-3 text-primary text-3xl">
+                <DarkModeToggle />
+                <button
+                  onClick={() => setNavIsOpen(!navIsOpen)}
+                  className="appearance-none outline-none"
+                >
+                  <AiOutlineMenu />
+                </button>
+              </section>
+            </section>
+          </nav>
+          {/* Navbar For Small Screens */}
+          <section
+            className={
+              navIsOpen
+                ? "lg:hidden fixed z-[40] h-auto pt-[7vh] bg-bg-light dark:bg-bg-dark dark:border-b dark:border-b-[#777777] w-full top-0 left-0 ease duration-500"
+                : "lg:hidden fixed z-[40] h-auto pt-[7vh] bg-bg-light dark:bg-bg-dark dark:border-b dark:border-b-[#777777] w-full top-[-50vh] left-0 ease duration-500"
+            }
+          >
+            <section className="flex flex-col justify-center gap-5 w-full h-full p-5">
               {pageLinks.map((item) => {
                 return (
-                  <Link href={`${item.href}`} key={item.id}>
+                  <Link
+                    href={`${item.href}`}
+                    key={item.id}
+                    onClick={() => setNavIsOpen(!navIsOpen)}
+                  >
                     {item.name}
                   </Link>
                 );
               })}
+              <section>
+                <Link href={`/auth/sign-up`}>
+                  <Button size="xs" type="primary">
+                    Sign Up
+                  </Button>
+                </Link>
+              </section>
             </section>
-            <Link href={`/auth/sign-up`}>
-              <Button size="x-wide" type="primary">
-                Sign Up
-              </Button>
-            </Link>
           </section>
-          {/* Right - Mobile */}
-          <section className="lg:hidden flex items-center gap-3 text-primary text-3xl">
-            <DarkModeToggle />
-            <button
-              onClick={() => setNavIsOpen(!navIsOpen)}
-              className="appearance-none outline-none"
-            >
-              <AiOutlineMenu />
-            </button>
-          </section>
-        </section>
-      </nav>
-      {/* Navbar For Small Screens */}
-      <section
-        className={
-          navIsOpen
-            ? "lg:hidden fixed z-[40] h-auto pt-[7vh] bg-bg-light dark:bg-bg-dark dark:border-b dark:border-b-[#777777] w-full top-0 left-0 ease duration-500"
-            : "lg:hidden fixed z-[40] h-auto pt-[7vh] bg-bg-light dark:bg-bg-dark dark:border-b dark:border-b-[#777777] w-full top-[-50vh] left-0 ease duration-500"
-        }
-      >
-        <section className="flex flex-col justify-center gap-5 w-full h-full p-5">
-          {pageLinks.map((item) => {
-            return (
-              <Link
-                href={`${item.href}`}
-                key={item.id}
-                onClick={() => setNavIsOpen(!navIsOpen)}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
-          <section>
-            <Link href={`/auth/sign-up`}>
-              <Button size="xs" type="primary">
-                Sign Up
-              </Button>
-            </Link>
-          </section>
-        </section>
-      </section>
-    </header>
+        </header>
       )}
     </main>
   );

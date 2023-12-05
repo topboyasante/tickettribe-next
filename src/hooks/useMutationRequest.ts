@@ -7,9 +7,9 @@ import { useRouter } from "next/navigation";
 const queryClient = new QueryClient();
 
 function useMutationRequest<T>(eventId?: string, key?: string) {
-  const router = useRouter()
-  const session = useSession()
-  const accessToken = session.data?.user.token
+  const router = useRouter();
+  const session = useSession();
+  const accessToken = session.data?.user.token;
   // Create Events
   const {
     mutate: createEvent,
@@ -30,7 +30,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
         queryKey: [`${key}`],
       });
       toast.success("Event Created!");
-      router.push("/events")
+      router.push("/events");
     },
     onError: (error: AxiosError<any, any>) => {
       console.log(error);
@@ -139,6 +139,35 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
         queryKey: [`${key}`],
       });
       toast.success("Ticket Created!");
+      router.push("/tickets");
+    },
+    onError: (error: AxiosError<any, any>) => {
+      console.log(error);
+      toast.error(`${error?.response?.data.msg}`);
+    },
+  });
+
+  // Purchase Tickets
+  const {
+    mutate: PurchaseTicket,
+    data: PurchasedTicket,
+    isPending: isPurchasingTicket,
+  } = useMutation({
+    mutationFn: async (payload: T) => {
+      const res = await axios.post(
+        `https://ticket-tribe.onrender.com/api/v1/attendants/purchase`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      return res.data;
+    },
+    onSuccess: (res) => {
+      console.log(res);
+      queryClient.invalidateQueries({
+        queryKey: [`${key}`],
+      });
+      toast.success("Ticket Purchased!");
+      router.push("/tickets");
     },
     onError: (error: AxiosError<any, any>) => {
       console.log(error);
@@ -162,6 +191,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
     createTicket,
     CreatedTicket,
     isCreatingTicket,
+    PurchaseTicket,PurchasedTicket,isPurchasingTicket
   };
 }
 

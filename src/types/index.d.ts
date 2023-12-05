@@ -34,3 +34,7 @@ interface IEvent {
     ticketQty: number;
     type: string;
   }
+
+  interface IPurchaseTicketRequest{
+    ticketQty: number;
+  }

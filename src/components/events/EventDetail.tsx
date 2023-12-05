@@ -1,5 +1,5 @@
 "use client";
-import { useFetch } from "@/hooks/useFetch";
+import { useAuthFetch, useFetch } from "@/hooks/useFetch";
 import Image from "next/image";
 import React from "react";
 import Loader from "../ui/loaders/Loader";
@@ -25,9 +25,24 @@ function EventDetail({
     eventId
   );
   //Fetch Tickets for this event
-  const { AllTicketsForEvent } = useFetchById("all-tickets", eventId);
-  //Fetch all My Events
-  const { MyEvents } = useFetch("my-events");
+  const { data: AllTicketsForEvent } = useAuthFetch(
+    "my-tickets",
+    "tickets/my-tickets",
+    (data) => {
+      const ticketsForEvent = data.tickets.filter(
+        (i: ITicket) => i.eventId === eventId
+      );
+      return ticketsForEvent;
+    }
+  );
+  //All MyEvents
+  const { data: MyEvents, isLoading: IsFetchingMyEvents } = useAuthFetch(
+    "my-events",
+    "events/my-events",
+    (data) => {
+      return data.event;
+    }
+  );
   //Check if the selected event exists in the "MyEvents" array. this means the user logged in created this event.
   const isMyEvent = (event: IEvent) => {
     return event._id === SingleEvent._id;
@@ -54,8 +69,8 @@ function EventDetail({
             <section className="flex"></section>
             <section className="flex flex-col gap-5 lg:flex-row justify-between lg:items-center">
               {/* Left Side */}
-              <section>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold capitalize">
+              <section className="lg:w-[60%]">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold capitalize text-primary-light dark:text-primary-dark">
                   {SingleEvent?.title}
                 </h1>
                 <p className="mt-3 mb-5">{SingleEvent?.description}</p>
@@ -71,13 +86,34 @@ function EventDetail({
                     </Button>
                   </section>
                 )}
+                {/* Date and Time */}
+                <section className="mt-5">
+                  <h3 className="font-bold text-2xl">Date and Time</h3>
+                  <section className="flex gap-2 items-center">
+                    <AiFillCalendar />
+                    <p>{formatDate(SingleEvent?.startDate)}</p>
+                  </section>
+                  <section className="flex gap-2 items-center">
+                    <CiClock2 />
+                    <p>{formatTime(SingleEvent?.startDateTime)}</p>
+                  </section>
+                </section>
+                {/* Location */}
+                <section className="mt-5">
+                  <h3 className="font-bold text-2xl">Location</h3>
+                  <section className="flex gap-2 items-center">
+                    <BiMapPin />
+                    <p>{SingleEvent?.location}</p>
+                  </section>
+                </section>
               </section>
               {/* Right Side */}
               {isAuth && (
-                <section className="w-full lg:w-[40%] h-[600px] lg:h-[300px] overflow-y-auto relative">
-                  {/* Counter for how many tickets you want will be here */}
+                <section className="w-full lg:w-[40%] h-[600px] lg:h-[350px] overflow-y-auto relative scrollbar-hide">
                   <section className="sticky top-0 bg-primary-light dark:bg-primary-dark dark:text-black w-full p-3 ">
-                    <p className="font-bold text-xl">Buy Tickets</p>
+                    <p className="font-bold text-xl text-white dark:text-black">
+                      Buy Tickets
+                    </p>
                   </section>
                   <section className="flex flex-col gap-5 p-5">
                     {AllTicketsForEvent?.map((item: ITicket) => {
@@ -96,26 +132,6 @@ function EventDetail({
                   </section>
                 </section>
               )}
-            </section>
-            {/* Date and Time */}
-            <section className="mt-5">
-              <h3 className="font-bold text-2xl">Date and Time</h3>
-              <section className="flex gap-2 items-center">
-                <AiFillCalendar />
-                <p>{formatDate(SingleEvent?.startDate)}</p>
-              </section>
-              <section className="flex gap-2 items-center">
-                <CiClock2 />
-                <p>{formatTime(SingleEvent?.startDateTime)}</p>
-              </section>
-            </section>
-            {/* Location */}
-            <section className="mt-5">
-              <h3 className="font-bold text-2xl">Location</h3>
-              <section className="flex gap-2 items-center">
-                <BiMapPin />
-                <p>{SingleEvent?.location}</p>
-              </section>
             </section>
           </section>
         </section>
