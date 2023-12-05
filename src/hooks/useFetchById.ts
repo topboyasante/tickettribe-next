@@ -29,6 +29,7 @@ export function useFetchById(key: string, eventId: String) {
         );
         return res.data;
       },
+      enabled: session.status === "authenticated",
       select: (data) => {
         const ticketsForEvent = data.tickets.filter(
           (i: ITicket) => i.eventId === eventId

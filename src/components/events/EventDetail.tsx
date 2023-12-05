@@ -1,7 +1,7 @@
 "use client";
 import { useAuthFetch, useFetch } from "@/hooks/useFetch";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Loader from "../ui/loaders/Loader";
 import { AiFillCalendar } from "react-icons/ai";
 import { BiMapPin } from "react-icons/bi";
@@ -11,6 +11,8 @@ import { useFetchById } from "@/hooks/useFetchById";
 import Link from "next/link";
 import Button from "../ui/buttons/Button";
 import Ticket from "../ui/ticket/Ticket";
+import useMutationRequest from "@/hooks/useMutationRequest";
+import Modal from "../ui/modal/Modal";
 
 function EventDetail({
   eventId,
@@ -19,6 +21,7 @@ function EventDetail({
   eventId: string;
   isAuth: boolean;
 }) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   //Fetch the Event whose ID was Passed:
   const { SingleEvent, isFetchingSingleEvent } = useFetchById(
     "events",
@@ -48,6 +51,13 @@ function EventDetail({
     return event._id === SingleEvent._id;
   };
 
+  const { DeleteEvent, isDeletingEvent } = useMutationRequest(eventId, "my-events");
+
+  function deleteData() {
+    DeleteEvent();
+    setIsOpen(isDeletingEvent);
+  }
+
   return (
     <section className="max-w-screen-xl mx-auto px-5 xl:px-0">
       {isFetchingSingleEvent ? (
@@ -66,7 +76,6 @@ function EventDetail({
             />
           </section>
           <section className="my-5">
-            <section className="flex"></section>
             <section className="flex flex-col gap-5 lg:flex-row justify-between lg:items-center">
               {/* Left Side */}
               <section className="lg:w-[60%]">
@@ -81,7 +90,7 @@ function EventDetail({
                         Edit Event
                       </Button>
                     </Link>
-                    <Button size="sm" type="danger">
+                    <Button size="sm" type="danger" onClick={()=>setIsOpen(true)}>
                       Delete Event
                     </Button>
                   </section>
@@ -136,6 +145,27 @@ function EventDetail({
           </section>
         </section>
       )}
+       {/* Modal */}
+       <Modal
+            CloseModal={() => setIsOpen(false)}
+            ModalIsOpen={isOpen}
+            ModalTitle="Delete Event"
+            ModalContent={
+              <section className="dark:text-black">
+                <h1>Are you sure you want to delete this event?</h1>
+                <div className="flex gap-5 mt-3">
+                  <button
+                    onClick={deleteData}
+                    disabled={isDeletingEvent}
+                    className="bg-red-700 text-white px-3 py-1 rounded"
+                  >
+                    Yes
+                  </button>
+                  <button onClick={() => setIsOpen(false)}>No</button>
+                </div>
+              </section>
+            }
+          />
     </section>
   );
 }

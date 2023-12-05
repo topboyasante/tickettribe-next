@@ -96,6 +96,12 @@ function AuthNavbar() {
                           <p className="font-semibold text-sm">Tickets</p>
                         </section>
                       </Link>
+                      <Link href={`/tickets/purchased`}>
+                        <section className="flex items-center gap-3">
+                          <BsTicketPerforated />
+                          <p className="font-semibold text-sm">Purchased Tickets</p>
+                        </section>
+                      </Link>
                       <Link href={`/profile`}>
                         <section className="flex items-center gap-3">
                           <AiOutlineUser />
@@ -148,6 +154,12 @@ function AuthNavbar() {
                         <section className="flex items-center gap-3">
                           <BsTicketPerforated />
                           <p className="font-semibold text-sm">Tickets</p>
+                        </section>
+                      </Link>
+                      <Link href={`/tickets/purchased`}>
+                        <section className="flex items-center gap-3">
+                          <BsTicketPerforated />
+                          <p className="font-semibold text-sm">Purchased Tickets</p>
                         </section>
                       </Link>
                       <Link href={`/profile`}>

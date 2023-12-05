@@ -84,6 +84,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
         queryKey: [`${key}`],
       });
       toast.success("Event Deleted!");
+      router.push("/events/my-events")
     },
     onError: (error: AxiosError<any, any>) => {
       console.log(error);

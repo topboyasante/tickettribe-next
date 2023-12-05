@@ -2,7 +2,6 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
-
 //For Requests that do not need the accessToken
 export function useFetch(
   key: string,
@@ -47,6 +46,7 @@ export function useAuthFetch(
       );
       return res.data;
     },
+    enabled: session.status === "authenticated",
     select:
       customSelect ||
       ((data) => {
