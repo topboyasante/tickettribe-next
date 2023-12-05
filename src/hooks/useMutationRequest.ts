@@ -126,7 +126,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
       );
       return res.data;
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
