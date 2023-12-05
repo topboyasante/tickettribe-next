@@ -2,6 +2,12 @@ interface LoginInput {
   email: string;
   password: string;
 }
+interface User {
+  name: string;
+  role: string;
+  userId: string;
+  email?:string
+}
 interface RegisterInput extends LoginInput {
   full_name: string;
   confirm_password: string;

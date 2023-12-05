@@ -59,3 +59,27 @@ export function useAuthFetch(
     data,
   };
 }
+
+export function useFetchUser(key: string) {
+  const session = useSession();
+  const accessToken = session.data?.user.token;
+
+  const { isLoading: isFetchingUser, data: User } = useQuery({
+    queryKey: [key],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://ticket-tribe.onrender.com/api/v1/user/profile`,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      return res.data;
+    },
+    enabled: session.status === "authenticated",
+    select: (data) => {
+      return data.user;
+    },
+  });
+  return {
+    isFetchingUser,
+    User,
+  };
+}
