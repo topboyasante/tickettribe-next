@@ -23,7 +23,7 @@ function Steps() {
               <br />
               <h1 className="text-xl font-bold">Create your event</h1>
               <p className="text-[#777777] mt-3">
-                Define your event's purpose, audience, and unique features.
+                Define your event&apos;s purpose, audience, and unique features.
                 Craft a compelling description to attract attendees and set the
                 tone for a memorable experience.
               </p>
@@ -54,7 +54,7 @@ function Steps() {
                 Utilize social media, email, and partnerships for maximum
                 exposure. Create visually appealing content highlighting key
                 event details. Encourage attendees to share, expanding your
-                event's reach.
+                event&apos;s reach.
               </p>
             </section>
           </section>

@@ -1,7 +1,7 @@
 import AddEventsForm from '@/components/events/AddEventsForm'
 import React from 'react'
 
-function page() {
+function Page() {
   return (
     <section>
         <section className="max-w-screen-xl mx-auto px-5 xl:px-0">
@@ -11,4 +11,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

@@ -59,7 +59,7 @@ function Page() {
               ) : (
                 <section className="h-[300px] w-full col-span-3 flex flex-col justify-center items-center">
                   <h1 className="text-2xl">Oops!😔</h1>
-                  <p>The event you're looking for does not exist.</p>
+                  <p>The event you&apos;re looking for does not exist.</p>
                 </section>
               )}
             </section>
