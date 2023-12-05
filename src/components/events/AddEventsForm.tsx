@@ -11,7 +11,6 @@ function AddEventsForm() {
   const [minDate] = useState<string>(() => getCurrentDate());
 
   const session = useSession();
-  console.log(session);
   const {
     register,
     handleSubmit,

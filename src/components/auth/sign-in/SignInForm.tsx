@@ -25,7 +25,6 @@ function SignInForm() {
       redirect: false,
     });
     if (res?.error) {
-      console.log(res.error);
       toast.error(`${res.error}`);
       setIsReqSent(false);
     } else {
