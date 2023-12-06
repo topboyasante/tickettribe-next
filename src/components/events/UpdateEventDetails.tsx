@@ -7,6 +7,7 @@ import Loader from "../ui/loaders/Loader";
 import Modal from "../ui/modal/Modal";
 import { useFetchById } from "@/hooks/useFetchById";
 import { RiImageAddLine } from "react-icons/ri";
+import { formatDateToMMDDYY } from "@/utils";
 
 function UpdateEventDetails({ eventId }: { eventId: string }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -30,7 +31,7 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
       title: SingleEvent?.title,
       description: SingleEvent?.description,
       location: SingleEvent?.location,
-      startDate: SingleEvent?.startDate,
+      startDate: SingleEvent && formatDateToMMDDYY(SingleEvent?.startDate),
       startDateTime: SingleEvent?.startDateTime,
       endDate: SingleEvent?.endDate,
       endDateTime: SingleEvent?.endDateTime,
@@ -40,7 +41,11 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
   //Update the form's default values with the data from the API
   useEffect(() => {
     if (SingleEvent) {
-      reset(SingleEvent);
+      reset({
+        ...SingleEvent,
+        startDate: SingleEvent && formatDateToMMDDYY(SingleEvent?.startDate),
+        endDate: SingleEvent && formatDateToMMDDYY(SingleEvent?.endDate),
+      });
     }
   }, [SingleEvent]);
 

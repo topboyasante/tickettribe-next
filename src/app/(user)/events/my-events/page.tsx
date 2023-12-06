@@ -1,8 +1,10 @@
 "use client";
 
+import Button from "@/components/ui/buttons/Button";
 import EventCard from "@/components/ui/events/EventCard";
 import Loader from "@/components/ui/loaders/Loader";
 import { useAuthFetch } from "@/hooks/useFetch";
+import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -29,9 +31,6 @@ function Page() {
     <section className="max-w-screen-xl min-h-screen mx-auto">
       <section className="p-5">
         <section>
-          <h1 className="text-2xl font-semibold text-primary-light dark:text-primary-dark">
-            My Events
-          </h1>
           <section className="flex flex-col md:flex-row lg:justify-between lg:items-center gap-3 my-3">
             <section className="border dark:border-[#303030] rounded-md px-2 py-1 w-[60%] lg:w-[45%] flex items-center">
               <input
@@ -45,6 +44,21 @@ function Page() {
                 <AiOutlineSearch />
               </section>
             </section>
+          </section>
+          <section className="flex flex-col lg:flex-row lg:justify-between lg:items-center w-full gap-3">
+            <section>
+              <h1 className="font-bold text-xl lg:text-3xl xl:text-4xl mb-2">
+                My Events
+              </h1>
+              <p className="text-[#777777]">
+                See all events you&apos;ve created
+              </p>
+            </section>
+            <Link href={`/events/create`}>
+              <Button size="sm" type="primary">
+                Create Event
+              </Button>
+            </Link>
           </section>
         </section>
         <section>
