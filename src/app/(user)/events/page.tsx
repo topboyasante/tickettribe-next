@@ -7,7 +7,10 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 function Page() {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const { data:Events, isLoading:IsFetchingEvents } = useFetch("events","events");
+  const { data: Events, isLoading: IsFetchingEvents } = useFetch(
+    "events",
+    "events"
+  );
   const filteredItems = Events?.filter((item: IEvent) => {
     const EventMatch = item?.title
       ?.toLowerCase()
@@ -44,22 +47,31 @@ function Page() {
               <Loader width="50" height="50" color="#006d77" />
             </section>
           ) : (
-            <section className="grid my-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full h-full">
-              {filteredItems?.length > 0 ? (
-                filteredItems?.map((item: IEvent) => (
-                  <EventCard
-                    key={item._id}
-                    name={item.title}
-                    location={item.location}
-                    id={item._id}
-                    image={item.image}
-                    isAuth={true}
-                  />
-                ))
+            <section>
+              {Events && Events?.length > 0 ? (
+                <section className="grid my-8 grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
+                  {filteredItems && filteredItems?.length > 0 ? (
+                    filteredItems?.map((item: IEvent) => (
+                      <EventCard
+                        key={item._id}
+                        name={item.title}
+                        location={item.location}
+                        id={item._id}
+                        image={item.image}
+                        isAuth={true}
+                      />
+                    ))
+                  ) : (
+                    <section className="h-[300px] w-full col-span-3 flex flex-col justify-center items-center">
+                      <h1 className="text-2xl">Oops!😔</h1>
+                      <p>The event you&apos;re looking for does not exist.</p>
+                    </section>
+                  )}
+                </section>
               ) : (
                 <section className="h-[300px] w-full col-span-3 flex flex-col justify-center items-center">
                   <h1 className="text-2xl">Oops!😔</h1>
-                  <p>The event you&apos;re looking for does not exist.</p>
+                  <p>There are currently no events available.</p>
                 </section>
               )}
             </section>

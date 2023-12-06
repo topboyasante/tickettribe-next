@@ -5,7 +5,8 @@ import Loader from "../ui/loaders/Loader";
 
 function DiscoverEvents() {
   // Hook to get Discovered Events
-  const {data:DiscoveredEvents,isLoading:IsFetchingDiscoveredEvents} = useFetch("discovered-events","events")
+  const { data: DiscoveredEvents, isLoading: IsFetchingDiscoveredEvents } =
+    useFetch("discovered-events", "events");
 
   return (
     <section className="w-full py-16">
@@ -19,21 +20,31 @@ function DiscoverEvents() {
                 <Loader width="50" height="50" color={"#777777"} />
               </section>
             ) : (
-              DiscoveredEvents?.map((item: IEvent) => {
-                return (
-                  <EventCard
-                    key={item._id}
-                    name={item.title}
-                    location={item.location}
-                    id={item._id}
-                    image={item.image}
-                    isAuth={false}
-                  />
-                );
-              })
+              <section className="w-full col-span-4">
+                {DiscoverEvents.length > 0 ? (
+                  DiscoveredEvents?.map((item: IEvent) => {
+                    return (
+                      <EventCard
+                        key={item._id}
+                        name={item.title}
+                        location={item.location}
+                        id={item._id}
+                        image={item.image}
+                        isAuth={false}
+                      />
+                    );
+                  })
+                ) : (
+                  <section className="w-full flex flex-col justify-center items-center text-center">
+                    <h1 className="text-2xl">Oops!😔</h1>
+                    <p className="my-3">
+                      There are currently no featured events available.
+                    </p>
+                  </section>
+                )}
+              </section>
             )}
           </section>
-          
         </section>
       </section>
     </section>

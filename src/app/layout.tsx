@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/providers/Provider";
 import { Toaster } from "react-hot-toast";
 
-const manrope = Manrope({ subsets: ["latin"] });
+const manrope = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TicketTribe",
