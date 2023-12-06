@@ -25,7 +25,7 @@ function Page() {
   return (
     <section className="max-w-screen-xl min-h-screen mx-auto">
       <section className="p-5">
-        <section className="bg-complementary-white">
+        <section>
           {/* Search Area */}
           <section className="w-full p-5">
             {/* Search Input */}

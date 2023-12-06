@@ -14,14 +14,14 @@ function DiscoverEvents() {
         <h1 className="text-xl lg:text-3xl font-bold mb-2">Discover Events</h1>
         <p>Take a peek at some amazing events using TicketTribe.</p>
         <section className="relative overflow-x-hidden">
-          <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5 w-full">
+          <section>
             {IsFetchingDiscoveredEvents ? (
               <section className="w-full h-full flex justify-center items-center my-5 col-span-4">
                 <Loader width="50" height="50" color={"#777777"} />
               </section>
             ) : (
-              <section className="w-full col-span-4">
-                {DiscoverEvents.length > 0 ? (
+              <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 my-5 w-full">
+                {DiscoveredEvents?.length > 0 ? (
                   DiscoveredEvents?.map((item: IEvent) => {
                     return (
                       <EventCard
