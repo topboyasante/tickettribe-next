@@ -23,11 +23,11 @@ export default function DropDown({MenuButtonContent,MenuItemsContent}:DropDownPr
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items
+          <section
             className={`absolute right-0 mt-2 w-56 origin-top-left bg-primary-light dark:bg-primary-dark text-white dark:text-black rounded p-2`}
           >
             {MenuItemsContent}
-          </Menu.Items>
+          </section>
         </Transition>
       </Menu>
     </section>

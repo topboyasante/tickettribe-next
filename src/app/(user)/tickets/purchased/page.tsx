@@ -60,35 +60,47 @@ function Page() {
         <br />
         <section>
           <section>
-            {IsFetchingPurchasedTickets && (
+            {IsFetchingPurchasedTickets ? (
               <section className="w-full h-full flex justify-center items-center my-5">
                 <Loader width="50" height="50" color="#006d77" />
               </section>
-            )}
-            {PurchasedTickets && PurchasedTickets?.length > 0 ? (
-              <section className="grid my-8 grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
-                {filteredItems && filteredItems?.length > 0 ? (
-                  filteredItems?.map((item: any) => ( //change this to the correct type
-                    <Ticket
-                      key={item.eventId}
-                      name={item.ticketName}
-                      eventName={item.eventName}
-                      eventId={item.eventId}
-                      type={item.ticketType}
-                      ticketQty={item.ticketQty}
-                      soldQty={item.soldQty}
-                      price={item.price}
-                      canBuy={false}
-                    />
-                  ))
+            ) : (
+              <section>
+                {PurchasedTickets && PurchasedTickets?.length > 0 ? (
+                  <section className="grid my-8 grid-cols-1 lg:grid-cols-3 gap-8 w-full h-full">
+                    {filteredItems && filteredItems?.length > 0 ? (
+                      filteredItems?.map(
+                        (
+                          item: any //change this to the correct type
+                        ) => (
+                          <Ticket
+                            key={item.eventId}
+                            name={item.ticketName}
+                            eventName={item.eventName}
+                            eventId={item.eventId}
+                            type={item.ticketType}
+                            ticketQty={item.ticketQty}
+                            soldQty={item.soldQty}
+                            price={item.price}
+                            canBuy={false}
+                          />
+                        )
+                      )
+                    ) : (
+                      <section className="h-[300px] w-full col-span-3 flex justify-center items-center">
+                        <h1 className="text-2xl">The item does not exist.</h1>
+                      </section>
+                    )}
+                  </section>
                 ) : (
-                  <section className="h-[300px] w-full col-span-3 flex justify-center items-center">
-                    <h1 className="text-2xl">The item does not exist.</h1>
+                  <section className="h-[300px] w-full col-span-3 flex flex-col justify-center items-center">
+                    <h1 className="text-2xl">Oops!😔</h1>
+                    <p className="my-3">
+                      There are currently no purchased tickets available.
+                    </p>
                   </section>
                 )}
               </section>
-            ) : (
-              <h1>The store is empty</h1>
             )}
           </section>
         </section>

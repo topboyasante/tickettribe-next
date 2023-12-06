@@ -75,7 +75,7 @@ function Ticket(props: TicketProps) {
         ModalTitle="Purchase Ticket"
         ModalContent={
           <section className="mt-8">
-            <form onSubmit={handleSubmit(onSubmit)} className="text-black">
+            <form onSubmit={handleSubmit(onSubmit)} className="dark:text-white">
               <section>
                 <label htmlFor="name">Ticket Quantity</label>
                 <br />

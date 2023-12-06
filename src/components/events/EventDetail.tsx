@@ -6,7 +6,7 @@ import Loader from "../ui/loaders/Loader";
 import { AiFillCalendar } from "react-icons/ai";
 import { BiMapPin } from "react-icons/bi";
 import { CiClock2 } from "react-icons/ci";
-// import { formatDate, formatTime } from "@/utils";
+import { formatDate, formatTime } from "@/utils";
 import { useFetchById } from "@/hooks/useFetchById";
 import Link from "next/link";
 import Button from "../ui/buttons/Button";
@@ -48,10 +48,15 @@ function EventDetail({
   );
   //Check if the selected event exists in the "MyEvents" array. this means the user logged in created this event.
   const isMyEvent = (event: IEvent) => {
-    return event._id === SingleEvent._id;
+    if (SingleEvent) {
+      return event._id === SingleEvent._id;
+    }
   };
 
-  const { DeleteEvent, isDeletingEvent } = useMutationRequest(eventId, "my-events");
+  const { DeleteEvent, isDeletingEvent } = useMutationRequest(
+    eventId,
+    "my-events"
+  );
 
   function deleteData() {
     DeleteEvent();
@@ -90,7 +95,11 @@ function EventDetail({
                         Edit Event
                       </Button>
                     </Link>
-                    <Button size="sm" type="danger" onClick={()=>setIsOpen(true)}>
+                    <Button
+                      size="sm"
+                      type="danger"
+                      onClick={() => setIsOpen(true)}
+                    >
                       Delete Event
                     </Button>
                   </section>
@@ -100,11 +109,13 @@ function EventDetail({
                   <h3 className="font-bold text-2xl">Date and Time</h3>
                   <section className="flex gap-2 items-center">
                     <AiFillCalendar />
-                    {/* <p>{formatDate(SingleEvent?.startDate)}</p> */}
+                    <p>{SingleEvent && formatDate(SingleEvent?.startDate)}</p>
                   </section>
                   <section className="flex gap-2 items-center">
                     <CiClock2 />
-                    {/* <p>{formatTime(SingleEvent?.startDateTime)}</p> */}
+                    <p>
+                      {SingleEvent && formatTime(SingleEvent?.startDateTime)}
+                    </p>
                   </section>
                 </section>
                 {/* Location */}
@@ -145,27 +156,27 @@ function EventDetail({
           </section>
         </section>
       )}
-       {/* Modal */}
-       <Modal
-            CloseModal={() => setIsOpen(false)}
-            ModalIsOpen={isOpen}
-            ModalTitle="Delete Event"
-            ModalContent={
-              <section className="dark:text-black">
-                <h1>Are you sure you want to delete this event?</h1>
-                <div className="flex gap-5 mt-3">
-                  <button
-                    onClick={deleteData}
-                    disabled={isDeletingEvent}
-                    className="bg-red-700 text-white px-3 py-1 rounded"
-                  >
-                    Yes
-                  </button>
-                  <button onClick={() => setIsOpen(false)}>No</button>
-                </div>
-              </section>
-            }
-          />
+      {/* Modal */}
+      <Modal
+        CloseModal={() => setIsOpen(false)}
+        ModalIsOpen={isOpen}
+        ModalTitle="Delete Event"
+        ModalContent={
+          <section className="dark:text-white">
+            <h1>Are you sure you want to delete this event?</h1>
+            <div className="flex gap-5 mt-3">
+              <button
+                onClick={deleteData}
+                disabled={isDeletingEvent}
+                className="bg-red-700 text-white px-3 py-1 rounded"
+              >
+                Yes
+              </button>
+              <button onClick={() => setIsOpen(false)}>No</button>
+            </div>
+          </section>
+        }
+      />
     </section>
   );
 }

@@ -7,6 +7,7 @@ const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
   return (
     <button
+    suppressHydrationWarning
       onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
       className="hover:scale-105 ease duration-500 aspect-square p-1 border rounded border-primary-light dark:border-primary-dark grid place-items-center cursor-pointer"
     >
@@ -18,5 +19,4 @@ const DarkModeToggle = () => {
     </button>
   );
 };
-
 export default DarkModeToggle;

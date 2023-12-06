@@ -6,6 +6,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Loader from "../ui/loaders/Loader";
 import Modal from "../ui/modal/Modal";
 import { useFetchById } from "@/hooks/useFetchById";
+import { RiImageAddLine } from "react-icons/ri";
 
 function UpdateEventDetails({ eventId }: { eventId: string }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -245,14 +246,28 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
         ModalContent={
           <section>
             <section className="my-5 border p-3 rounded">
-              <img src={preview} alt="preview_image" />
+              {preview ? (
+                <img src={preview} alt="preview_image" />
+              ) : (
+                <p>No Image Selected</p>
+              )}
             </section>
             <form onSubmit={(e) => uploadImage(e)}>
+              <label
+                htmlFor="imageUpload"
+                className="h-9 w-auto gap-2 flex flex-row items-center justify-center bg-primary-light dark:bg-primary-dark text-white dark:text-blackfont-semibold rounded-[4px] hover:cursor-pointer"
+              >
+                <div className="">
+                  <RiImageAddLine />
+                </div>
+                <p>Choose Image</p>
+              </label>
               <input
                 type="file"
                 id="imageUpload"
                 accept="image/*"
                 onChange={(e) => fileUpload(e)}
+                className="hidden relative h-[0.1px] -z-50"
               />
               <button className="bg-primary-light text-white dark:bg-primary-dark dark:text-black px-2 py-1 rounded mt-3 hover:scale-105 cursor-pointer ease-in duration-200">
                 Submit

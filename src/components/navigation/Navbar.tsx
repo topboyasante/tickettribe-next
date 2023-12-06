@@ -2,7 +2,11 @@
 import { useSession, signOut } from "next-auth/react";
 import { BiChevronDown } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
-import { BsTicketPerforated, BsCalendarEvent } from "react-icons/bs";
+import {
+  BsTicketPerforated,
+  BsCalendarEvent,
+  BsCalendar4Week,
+} from "react-icons/bs";
 import Avatar from "react-avatar";
 import Link from "next/link";
 import Logo from "../ui/logo/Logo";
@@ -11,6 +15,8 @@ import DropDown from "../ui/dropdown/DropDown";
 import DarkModeToggle from "../ui/dark-mode/DarkModeToggle";
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
+import { Menu } from "@headlessui/react";
+import { IoTicketOutline } from "react-icons/io5";
 
 const pageLinks = [
   {
@@ -33,6 +39,14 @@ const pageLinks = [
     name: "Sign In",
     href: "auth/sign-in",
   },
+];
+
+const navigationLinks = [
+  { href: "/events", icon: <BsCalendar4Week />, text: "All Events" },
+  { href: "/events/my-events", icon: <BsCalendarEvent />, text: "My Events" },
+  { href: "/tickets", icon: <BsTicketPerforated />, text: "Tickets" },
+  { href: "/tickets/purchased" ,icon: <IoTicketOutline />, text: "Purchased Tickets" },
+  { href: "/profile", icon: <AiOutlineUser />, text: "Profile" },
 ];
 
 function AuthNavbar() {
@@ -78,36 +92,18 @@ function AuthNavbar() {
                   }
                   MenuItemsContent={
                     <section className="flex flex-col gap-3">
-                      <Link href={`/events`}>
-                        <section className="flex items-center gap-3">
-                          <BsCalendarEvent />
-                          <p className="font-semibold text-sm">All Events</p>
-                        </section>
-                      </Link>
-                      <Link href={`/events/my-events`}>
-                        <section className="flex items-center gap-3">
-                          <BsCalendarEvent />
-                          <p className="font-semibold text-sm">My Events</p>
-                        </section>
-                      </Link>
-                      <Link href={`/tickets`}>
-                        <section className="flex items-center gap-3">
-                          <BsTicketPerforated />
-                          <p className="font-semibold text-sm">Tickets</p>
-                        </section>
-                      </Link>
-                      <Link href={`/tickets/purchased`}>
-                        <section className="flex items-center gap-3">
-                          <BsTicketPerforated />
-                          <p className="font-semibold text-sm">Purchased Tickets</p>
-                        </section>
-                      </Link>
-                      <Link href={`/profile`}>
-                        <section className="flex items-center gap-3">
-                          <AiOutlineUser />
-                          <p className="font-semibold text-sm">Profile</p>
-                        </section>
-                      </Link>
+                      {navigationLinks.map((link, index) => (
+                        <Link key={index} href={link.href}>
+                          <Menu.Item>
+                            <section className="flex items-center gap-3">
+                              {link.icon}
+                              <p className="font-semibold text-sm">
+                                {link.text}
+                              </p>
+                            </section>
+                          </Menu.Item>
+                        </Link>
+                      ))}
                       <button
                         onClick={() => signOut()}
                         className="flex items-center gap-3"
@@ -138,36 +134,18 @@ function AuthNavbar() {
                   }
                   MenuItemsContent={
                     <section className="flex flex-col gap-3">
-                      <Link href={`/events`}>
-                        <section className="flex items-center gap-3">
-                          <BsCalendarEvent />
-                          <p className="font-semibold text-sm">All Events</p>
-                        </section>
-                      </Link>
-                      <Link href={`/events/my-events`}>
-                        <section className="flex items-center gap-3">
-                          <BsCalendarEvent />
-                          <p className="font-semibold text-sm">My Events</p>
-                        </section>
-                      </Link>
-                      <Link href={`/tickets`}>
-                        <section className="flex items-center gap-3">
-                          <BsTicketPerforated />
-                          <p className="font-semibold text-sm">Tickets</p>
-                        </section>
-                      </Link>
-                      <Link href={`/tickets/purchased`}>
-                        <section className="flex items-center gap-3">
-                          <BsTicketPerforated />
-                          <p className="font-semibold text-sm">Purchased Tickets</p>
-                        </section>
-                      </Link>
-                      <Link href={`/profile`}>
-                        <section className="flex items-center gap-3">
-                          <AiOutlineUser />
-                          <p className="font-semibold text-sm">Profile</p>
-                        </section>
-                      </Link>
+                      {navigationLinks.map((link, index) => (
+                        <Link key={index} href={link.href}>
+                          <Menu.Item>
+                            <section className="flex items-center gap-3">
+                              {link.icon}
+                              <p className="font-semibold text-sm">
+                                {link.text}
+                              </p>
+                            </section>
+                          </Menu.Item>
+                        </Link>
+                      ))}
                       <button
                         onClick={() => signOut()}
                         className="flex items-center gap-3"
