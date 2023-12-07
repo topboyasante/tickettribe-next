@@ -44,3 +44,13 @@ interface IEvent {
   interface IPurchaseTicketRequest{
     ticketQty: number;
   }
+
+  interface ICreateEventRequest {
+    title: string;
+    description: string;
+    startDate: string;
+    startDateTime: string;
+    endDate: string;
+    endDateTime: string;
+    location: string;
+  };
