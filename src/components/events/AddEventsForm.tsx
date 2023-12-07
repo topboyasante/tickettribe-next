@@ -44,11 +44,11 @@ function AddEventsForm() {
     isFirstStep,
     isLastStep,
   } = useMultiStepForm([
-    <EventName {...data} updateFields={updateFields} />,
-    <EventLocation {...data} updateFields={updateFields} />,
-    <EventStartDate {...data} updateFields={updateFields} />,
-    <EventEndDate {...data} updateFields={updateFields} />,
-    <EventDescription {...data} updateFields={updateFields} />,
+    <EventName {...data} updateFields={updateFields} key={1} />,
+    <EventLocation {...data} updateFields={updateFields} key={2} />,
+    <EventStartDate {...data} updateFields={updateFields} key={3} />,
+    <EventEndDate {...data} updateFields={updateFields} key={4} />,
+    <EventDescription {...data} updateFields={updateFields} key={5} />,
   ]);
 
   function onSubmit(e: FormEvent) {
