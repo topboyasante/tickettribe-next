@@ -32,7 +32,7 @@ function EventEndDate({ ...props }: FormProps) {
         endDateTime: props.endDateTime,
       });
     }
-  }, [props.endDate, props.endDateTime]);
+  }, [props.endDate, props.endDateTime,reset]);
 
   function onSubmit(data: FormData) {
     props.updateFields(data);

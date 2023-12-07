@@ -28,7 +28,7 @@ function EventLocation({ ...props }: FormProps) {
         location: props.location,
       });
     }
-  }, [props.location]);
+  }, [props.location,reset]);
 
   function onSubmit(data: FormData) {
     props.updateFields(data);

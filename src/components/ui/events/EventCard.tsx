@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type EventProps = {
@@ -12,7 +13,13 @@ function EventCard({ isAuth, name, id, location, image }: EventProps) {
   return (
     <Link href={isAuth ? `/events/${id}` : `/events/viewing/${id}`}>
       <section className="col-span-1 shadow-sm dark:border border-[#303030] rounded-xl">
-        <img src={image} alt={name} className="h-[150px] w-full object-cover rounded-t-xl" />
+        <Image
+          src={image}
+          width={1000}
+          height={1000}
+          alt={name}
+          className="h-[150px] w-full object-cover rounded-t-xl"
+        />
         <section className="p-3">
           <h1 className="font-semibold text-xl capitalize">{name}</h1>
           <p className="text-[#777777]">{location}</p>

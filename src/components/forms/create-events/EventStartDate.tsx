@@ -32,7 +32,7 @@ function EventStartDate({ ...props }: FormProps) {
         startDateTime: props.startDateTime,
       });
     }
-  }, [props.startDate, props.startDateTime]);
+  }, [props.startDate, props.startDateTime,reset]);
 
   function onSubmit(data: FormData) {
     props.updateFields(data);

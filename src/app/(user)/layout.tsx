@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <section className="pt-[7vh] px-5">{children}</section>
+      <section className="pt-[7vh]">{children}</section>
       {pathname !== "/events/create" && <Footer />}
     </>
   );

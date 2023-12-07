@@ -28,7 +28,7 @@ function EventName({ ...props }: FormProps) {
         title: props.title,
       });
     }
-  }, [props.title]);
+  }, [props.title,reset]);
 
   function onSubmit(data: FormData) {
     props.updateFields(data);

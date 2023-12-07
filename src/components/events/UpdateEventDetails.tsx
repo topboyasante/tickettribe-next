@@ -8,6 +8,7 @@ import Modal from "../ui/modal/Modal";
 import { useFetchById } from "@/hooks/useFetchById";
 import { RiImageAddLine } from "react-icons/ri";
 import { formatDateToMMDDYY } from "@/utils";
+import Image from "next/image";
 
 function UpdateEventDetails({ eventId }: { eventId: string }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -47,7 +48,7 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
         endDate: SingleEvent && formatDateToMMDDYY(SingleEvent?.endDate),
       });
     }
-  }, [SingleEvent]);
+  }, [SingleEvent,reset]);
 
   function onSubmit(data: IEvent) {
     const payload = {
@@ -252,7 +253,7 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
           <section>
             <section className="my-5 border p-3 rounded">
               {preview ? (
-                <img src={preview} alt="preview_image" />
+                <Image src={preview} alt="preview_image" />
               ) : (
                 <p>No Image Selected</p>
               )}

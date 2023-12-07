@@ -24,7 +24,7 @@ function ProfilePage() {
     if (User) {
       reset(User);
     }
-  }, [User]);
+  }, [User,reset]);
 
   function onSubmit(data:User){
     const payload = {
