@@ -5,10 +5,11 @@ import Loader from "../ui/loaders/Loader";
 import { useFetchUser } from "@/hooks/useFetch";
 import { useEffect } from "react";
 import useMutationRequest from "@/hooks/useMutationRequest";
+import Image from "next/image";
 
 function ProfilePage() {
   const { User, isFetchingUser } = useFetchUser("user");
-  const {UpdateProfile,isUpdatingProfile} = useMutationRequest()
+  const { UpdateProfile, isUpdatingProfile } = useMutationRequest();
 
   const {
     register,
@@ -24,20 +25,22 @@ function ProfilePage() {
     if (User) {
       reset(User);
     }
-  }, [User]);
+  }, [User, reset]);
 
-  function onSubmit(data:User){
+  function onSubmit(data: User) {
     const payload = {
-      fullName:data.name
-    }
-    UpdateProfile(payload)
+      fullName: data.name,
+    };
+    UpdateProfile(payload);
   }
 
   return (
     <section className="max-w-screen-xl mx-auto p-5">
       {/* Heading */}
       <section className="w-full">
-        <img
+        <Image
+          width={1000}
+          height={1000}
           src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&q=80&w=1978&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="user-cover-img"
           className="w-full h-[200px] object-cover"

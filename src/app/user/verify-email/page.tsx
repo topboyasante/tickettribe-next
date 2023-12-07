@@ -17,7 +17,7 @@ function Page() {
       verificationToken: tokenValue,
     };
     verifyAccount(data);
-  }, []);
+  });
   return (
     <section className="w-full h-screen">
       <section className="w-full h-full flex items-center">

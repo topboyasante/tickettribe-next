@@ -29,7 +29,7 @@ function EventDescription({ ...props }: FormProps) {
         description: props.description,
       });
     }
-  }, [props.description]);
+  }, [props.description,reset]);
 
   function onSubmit(data: FormData) {
     props.updateFields(data);
