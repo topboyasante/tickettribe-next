@@ -46,7 +46,7 @@ function EventName({ ...props }: FormProps) {
         </h1>
       </section>
       <section className="mt-16">
-        <label htmlFor="name">What's the name of your event?</label>
+        <label htmlFor="name">What&apos;s the name of your event?</label>
         <br />
         <input
           type="text"
