@@ -1,3 +1,4 @@
+"use client"
 import AddEventsForm from '@/components/events/AddEventsForm'
 import React from 'react'
 
