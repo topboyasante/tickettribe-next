@@ -4,17 +4,17 @@ const pageLinks = [
   {
     id: 0,
     name: "About",
-    href: "about",
+    href: "/about",
   },
   {
     id: 1,
     name: "Pricing",
-    href: "pricing",
+    href: "/pricing",
   },
   {
     id: 2,
     name: "Help",
-    href: "help",
+    href: "/help",
   },
 ];
 

@@ -253,7 +253,7 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
           <section>
             <section className="my-5 border p-3 rounded">
               {preview ? (
-                <Image src={preview} alt="preview_image" />
+                <Image src={preview} alt="preview_image" width={1000} height={1000} />
               ) : (
                 <p>No Image Selected</p>
               )}
@@ -261,7 +261,7 @@ function UpdateEventDetails({ eventId }: { eventId: string }) {
             <form onSubmit={(e) => uploadImage(e)}>
               <label
                 htmlFor="imageUpload"
-                className="h-9 w-auto gap-2 flex flex-row items-center justify-center bg-primary-light dark:bg-primary-dark text-white dark:text-blackfont-semibold rounded-[4px] hover:cursor-pointer"
+                className="h-9 w-auto gap-2 flex flex-row items-center justify-center bg-primary-light dark:bg-primary-dark text-white dark:text-black font-semibold rounded-[4px] hover:cursor-pointer"
               >
                 <div className="">
                   <RiImageAddLine />
