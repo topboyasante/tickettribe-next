@@ -9,16 +9,14 @@ function Page() {
     useAuth("events");
 
   useEffect(() => {
-    if (window) {
-      const searchParams = new URLSearchParams(window.location.search);
-      const tokenValue = searchParams.get("token");
-      const emailValue = searchParams.get("email");
-      const data = {
-        email: emailValue,
-        verificationToken: tokenValue,
-      };
-      verifyAccount(data);
-    }
+    const searchParams = new URLSearchParams(window.location.search);
+    const tokenValue = searchParams.get("token");
+    const emailValue = searchParams.get("email");
+    const data = {
+      email: emailValue,
+      verificationToken: tokenValue,
+    };
+    verifyAccount(data);
   }, []);
 
   return (
