@@ -22,22 +22,22 @@ const pageLinks = [
   {
     id: 0,
     name: "About",
-    href: "about",
+    href: "/about",
   },
   {
     id: 1,
     name: "Pricing",
-    href: "pricing",
+    href: "/pricing",
   },
   {
     id: 2,
     name: "Help",
-    href: "help",
+    href: "/help",
   },
   {
     id: 3,
     name: "Sign In",
-    href: "auth/sign-in",
+    href: "/auth/sign-in",
   },
 ];
 

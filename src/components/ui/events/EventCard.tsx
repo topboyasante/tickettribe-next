@@ -13,7 +13,7 @@ type EventProps = {
 
 function EventCard({ isAuth, name, id, location, image, date }: EventProps) {
   return (
-    <Link href={isAuth ? `/events/${id}` : `/events/viewing/${id}`}>
+    <Link href={isAuth ? `/events/${id}` : `/viewing/${id}`}>
       <section className="col-span-1 shadow-sm dark:border border-[#303030] rounded-xl">
         <Image
           src={image}

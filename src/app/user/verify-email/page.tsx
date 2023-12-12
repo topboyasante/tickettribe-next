@@ -9,15 +9,18 @@ function Page() {
     useAuth("events");
 
   useEffect(() => {
-    const searchParams = new URLSearchParams();
-    const tokenValue = searchParams.get("token");
-    const emailValue = searchParams.get("email");
-    const data = {
-      email: emailValue,
-      verificationToken: tokenValue,
-    };
-    verifyAccount(data);
-  });
+    if (window) {
+      const searchParams = new URLSearchParams(window.location.search);
+      const tokenValue = searchParams.get("token");
+      const emailValue = searchParams.get("email");
+      const data = {
+        email: emailValue,
+        verificationToken: tokenValue,
+      };
+      verifyAccount(data);
+    }
+  }, []);
+
   return (
     <section className="w-full h-screen">
       <section className="w-full h-full flex items-center">
