@@ -9,7 +9,7 @@ function Page() {
     useAuth("events");
 
   useEffect(() => {
-    const searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams(window.location.search);
     const tokenValue = searchParams.get("token");
     const emailValue = searchParams.get("email");
     const data = {
@@ -17,7 +17,8 @@ function Page() {
       verificationToken: tokenValue,
     };
     verifyAccount(data);
-  });
+  }, []);
+
   return (
     <section className="w-full h-screen">
       <section className="w-full h-full flex items-center">
