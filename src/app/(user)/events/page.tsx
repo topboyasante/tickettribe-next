@@ -59,6 +59,7 @@ function Page() {
                         id={item._id}
                         image={item.image}
                         isAuth={true}
+                        date={item.startDate}
                       />
                     ))
                   ) : (

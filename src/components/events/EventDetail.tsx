@@ -109,12 +109,16 @@ function EventDetail({
                   <h3 className="font-bold text-2xl">Date and Time</h3>
                   <section className="flex gap-2 items-center">
                     <AiFillCalendar />
-                    <p>{SingleEvent && formatDate(SingleEvent?.startDate)}</p>
+                    <p>
+                      {SingleEvent && formatDate(SingleEvent?.startDate)} -{" "}
+                      {SingleEvent && formatDate(SingleEvent?.endDate)}
+                    </p>
                   </section>
                   <section className="flex gap-2 items-center">
                     <CiClock2 />
                     <p>
-                      {SingleEvent && formatTime(SingleEvent?.startDateTime)}
+                      {SingleEvent && formatTime(SingleEvent?.startDateTime)} -{" "}
+                      {SingleEvent && formatTime(SingleEvent?.endDateTime)}
                     </p>
                   </section>
                 </section>
@@ -130,25 +134,33 @@ function EventDetail({
               {/* Right Side */}
               {isAuth && (
                 <section className="w-full lg:w-[40%] h-[600px] lg:h-[350px] overflow-y-auto relative scrollbar-hide">
-                  <section className="sticky top-0 bg-primary-light dark:bg-primary-dark dark:text-black w-full p-3 ">
+                  <section className="sticky top-0 bg-primary-light dark:bg-primary-dark dark:text-black rounded-t-md w-full p-3 ">
                     <p className="font-bold text-xl text-white dark:text-black">
                       Buy Tickets
                     </p>
                   </section>
-                  <section className="flex flex-col gap-5 p-5">
-                    {AllTicketsForEvent?.map((item: ITicket) => {
-                      return (
-                        <Ticket
-                          key={item._id}
-                          name={item.name}
-                          eventName={item.eventName}
-                          eventId={item.eventId}
-                          type={item.type}
-                          price={item.price}
-                          canBuy={true}
-                        />
-                      );
-                    })}
+                  <section>
+                    {AllTicketsForEvent?.length > 0 ? (
+                      <section className="flex flex-col gap-5 p-5">
+                        {AllTicketsForEvent?.map((item: ITicket) => {
+                          return (
+                            <Ticket
+                              key={item._id}
+                              name={item.name}
+                              eventName={item.eventName}
+                              eventId={item.eventId}
+                              type={item.type}
+                              price={item.price}
+                              canBuy={true}
+                            />
+                          );
+                        })}
+                      </section>
+                    ) : (
+                      <section className="p-5">
+                        <h1>No tickets available, yet</h1>
+                      </section>
+                    )}
                   </section>
                 </section>
               )}

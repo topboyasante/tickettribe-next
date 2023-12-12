@@ -1,3 +1,4 @@
+import { formatDate } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,9 +8,10 @@ type EventProps = {
   id: string;
   image: string;
   isAuth: boolean;
+  date: string;
 };
 
-function EventCard({ isAuth, name, id, location, image }: EventProps) {
+function EventCard({ isAuth, name, id, location, image, date }: EventProps) {
   return (
     <Link href={isAuth ? `/events/${id}` : `/events/viewing/${id}`}>
       <section className="col-span-1 shadow-sm dark:border border-[#303030] rounded-xl">
@@ -23,6 +25,8 @@ function EventCard({ isAuth, name, id, location, image }: EventProps) {
         <section className="p-3">
           <h1 className="font-semibold text-xl capitalize">{name}</h1>
           <p className="text-[#777777]">{location}</p>
+          <br />
+          <p>{date && formatDate(date)}</p>
         </section>
       </section>
     </Link>

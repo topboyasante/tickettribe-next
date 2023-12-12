@@ -1,7 +1,5 @@
 "use client"
-import Button from "@/components/ui/buttons/Button";
 import PricingCard from "@/components/ui/pricing/PricingCard";
-import Link from "next/link";
 
 function Page() {
     const pricingData = [
@@ -61,10 +59,6 @@ function Page() {
                 No set-up fees or hidden costs, sign up today and find out how
                 TicketTribe can help you sell tickets for your upcoming event.
               </p>
-              <br />
-              <Link href={`/events/create`}>
-                <Button size="sm" type="primary">Create An Event</Button>
-              </Link>
             </section>
           </main>
           <section className="max-w-screen-xl mx-auto p-5 lg:px-0">
