@@ -3,12 +3,15 @@ import { QueryClient, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { signOut, useSession } from "next-auth/react";
 
 const queryClient = new QueryClient();
 
 function useAuth<T>(key?: string) {
   const router = useRouter();
-  const {reset} = useForm()
+  const { reset } = useForm();
+  const session = useSession();
+  const accessToken = session.data?.user.token;
 
   const {
     mutate: SignUp,
@@ -78,13 +81,12 @@ function useAuth<T>(key?: string) {
       toast.success(
         "A Reset Password Link has been sent to your email. Click on the Link to Reset your Password."
       );
-      reset()
+      reset();
     },
     onError: (error: AxiosError<any, any>) => {
       toast.error(`There was an error. Please Try Again.`);
     },
   });
-
 
   const {
     mutate: ResetPassword,
@@ -104,7 +106,9 @@ function useAuth<T>(key?: string) {
       return res.data;
     },
     onSuccess: () => {
-      toast.success("You have Successfully Reset your password. Please Sign In!");
+      toast.success(
+        "You have Successfully Reset your password. Please Sign In!"
+      );
       router.push("/auth/sign-in");
     },
     onError: (error: AxiosError<any, any>) => {
@@ -112,6 +116,35 @@ function useAuth<T>(key?: string) {
     },
   });
 
+  const {
+    mutate: ChangePassword,
+    data: ChangePasswordData,
+    isPending: IsChangingPassword,
+    isSuccess: HasChangedPassword,
+  } = useMutation({
+    mutationFn: async (payload: {
+      oldpassword: string;
+      newpassword: string;
+    }) => {
+      const res = await axios.patch(
+        `https://ticket-tribe.onrender.com/api/v1/user/updateUserPassword`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      signOut();
+      router.push("/auth/sign-in");
+      toast.success(
+        "You have Successfully Changed your password. Please Sign In!",
+        { duration: 5000 }
+      );
+    },
+    onError: (error: AxiosError<any, any>) => {
+      toast.error(`There was an error. Please Try Again.`);
+    },
+  });
 
   return {
     SignUp,
@@ -131,6 +164,10 @@ function useAuth<T>(key?: string) {
     ResetPassword,
     ResetPasswordData,
     IsResettingPassword,
+    ChangePassword,
+    IsChangingPassword,
+    HasChangedPassword,
+    ChangePasswordData,
   };
 }
 

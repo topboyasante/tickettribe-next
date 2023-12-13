@@ -102,6 +102,11 @@ function EventDetail({
                     >
                       Delete Event
                     </Button>
+                    {/* <Link href={`/tickets/create`}>
+                      <Button size="sm" type="outline">
+                        Create Tickets
+                      </Button>
+                    </Link> */}
                   </section>
                 )}
                 {/* Date and Time */}
