@@ -54,3 +54,9 @@ interface IEvent {
     endDateTime: string;
     location: string;
   };
+
+  interface ChangePasswordInput{
+    oldpassword:string,
+    newpassword:string,
+    confirm_password:string
+  }

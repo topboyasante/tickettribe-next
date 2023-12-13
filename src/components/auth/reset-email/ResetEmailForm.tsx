@@ -35,7 +35,7 @@ function ResetEmailForm() {
   }
 
   useEffect(() => {
-    const searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams(window.location.search);
     const tokenValue = searchParams.get("token");
     const emailValue = searchParams.get("email");
 

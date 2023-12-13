@@ -17,6 +17,7 @@ import { useState } from "react";
 import { AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
 import { Menu } from "@headlessui/react";
 import { IoTicketOutline } from "react-icons/io5";
+import { CiSettings } from "react-icons/ci";
 
 const pageLinks = [
   {
@@ -47,6 +48,7 @@ const navigationLinks = [
   { href: "/tickets", icon: <BsTicketPerforated />, text: "Tickets" },
   { href: "/tickets/purchased" ,icon: <IoTicketOutline />, text: "Purchased Tickets" },
   { href: "/profile", icon: <AiOutlineUser />, text: "Profile" },
+  { href: "/settings", icon: <CiSettings />, text: "Settings" },
 ];
 
 function AuthNavbar() {

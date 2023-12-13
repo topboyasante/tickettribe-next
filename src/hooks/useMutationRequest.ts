@@ -157,7 +157,7 @@ function useMutationRequest<T>(eventId?: string, key?: string) {
         queryKey: [`${key}`],
       });
       toast.success("Ticket Purchased!");
-      router.push("/tickets");
+      router.push("/tickets/purchased");
     },
     onError: (error: AxiosError<any, any>) => {
       toast.error(`${error?.response?.data.msg}`);
