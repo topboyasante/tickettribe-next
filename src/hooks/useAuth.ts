@@ -30,10 +30,10 @@ function useAuth<T>(key?: string) {
       queryClient.invalidateQueries({
         queryKey: [`${key}`],
       });
-      toast.success("User successfully created! Kindly Verify your Account.");
+      toast.success("User successfully created! Kindly Verify your Account. Check your mail for a verification link.");
     },
     onError: (error: AxiosError<any, any>) => {
-      toast.error(`${error?.response?.data.message}`);
+      toast.error(`${error?.response?.data.msg}`);
     },
   });
 

@@ -31,7 +31,6 @@ function SignUpForm() {
       password: data.password,
     };
     SignUp(payload);
-    reset();
   }
   return (
     <section className="max-w-[95%] lg:max-w-[60%] mx-auto">
