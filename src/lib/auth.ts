@@ -37,8 +37,8 @@ export const authOptions: NextAuthOptions = {
           }
           return user
         })
-        .catch(() => {
-          throw new Error("Invalid Credentials");
+        .catch((err) => {
+          throw new Error(`${err.response.data.msg}`);
         });
 
         return user
